@@ -13,18 +13,19 @@ function ToDoList() {
     }
 
     function addTask() {
-        if(userInput.trim() !== "" ){
+        if (userInput.trim() !== "") {
             const newTask = {
                 id: tasks.length + 1,
                 taskName: userInput,
                 isChecked: false
             }
-            setTasks(t => [...t,newTask]);
+            setTasks(t => [...t, newTask])
         }
     }
 
     function removeTask(id) {
-
+        const updated = tasks.filter((_, i) => i !== id);
+        setTasks(updated);
     }
 
     function moveTaskUp(id) {
@@ -48,23 +49,22 @@ function ToDoList() {
             <div className="display-tasks">
                 <ul style={{ listStyleType: "none", padding: 0 }}>
                     {tasks.map((task, index) =>
-                        <li key={index}>
-                            <span style={{
-                                color: task.isChecked ? "grey" : "black",
-                                textDecoration: task.isChecked ? "line-through" : "none",
-                                padding: "none",
-                                marginLeft: "20px"
-                            }}>
-                                {task.taskName}
-                            </span>
-                            <input type="checkbox"
-                                checked={task.isChecked}
-                                onChange={() => handleTaskCheck(index)}
-                            ></input>
-
-
-
-
+                        <li
+                            key={index}>
+                            <div className="task-row">
+                                <input type="checkbox"
+                                    checked={task.isChecked}
+                                    onChange={() => handleTaskCheck(index)}
+                                ></input>
+                                <span style={{
+                                    color: task.isChecked ? "grey" : "black",
+                                    textDecoration: task.isChecked ? "line-through" : "none"
+                                }}>
+                                    {task.taskName}
+                                </span>
+                            </div>
+                            <button className="delete-button"
+                                onClick={() => removeTask(index)}>Delete</button>
 
                         </li>
                     )}
@@ -73,10 +73,11 @@ function ToDoList() {
             <div className="add-new-task">
                 <input className="new-task"
                     value={userInput}
+                    placeholder="e.g. Study"
                     onChange={handleInput}
                     type="text"
                 ></input>
-               <button className="add-task-button" onClick={addTask}>Add</button>
+                <button className="add-task-button" onClick={addTask}>Add</button>
             </div>
         </div>
 

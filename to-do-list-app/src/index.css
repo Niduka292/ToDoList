@@ -1,0 +1,10 @@
+li{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 5px;
+}
+
+.task-row{
+    width: 120px;
+}
