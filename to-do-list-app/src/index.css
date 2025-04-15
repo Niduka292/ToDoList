@@ -14,12 +14,12 @@ body{
 }
 
 .task-row{
-    width: 120px;
+    width: 180px;
 }
 
 .new-task{
     height: 25px;
-    width: 220px;
+    width: 250px;
 }
 
 .title{
@@ -60,6 +60,17 @@ body{
     height: 28px;
     margin-top: 4px;
 }
+
+.add-task-button{
+    background-color: green;
+    height: 30px;
+    margin: 0px 8px;
+    border: none;
+    width: 50px;
+    color: white;
+    border-radius: 3px;
+}
+
 
 
 

@@ -20,8 +20,14 @@ function ToDoList() {
                 taskName: userInput,
                 isChecked: false
             }
-            setTasks(t => [...t, newTask])
+            
+            const checked = tasks.filter(task => task.isChecked);
+            const unchecked = tasks.filter(task => !task.isChecked);
+
+            const updatedTasks = [...unchecked,newTask,...checked];
+            setTasks(updatedTasks);
             setUserInput("");
+            
         }
     }
 
@@ -111,6 +117,11 @@ function ToDoList() {
                     placeholder="e.g. Study"
                     onChange={handleInput}
                     type="text"
+                    onKeyDown={(e) => {
+                        if(e.key === 'Enter'){
+                            addTask();
+                        }
+                    }}
                 ></input>
                 <button className="add-task-button" onClick={addTask}>Add</button>
             </div>
