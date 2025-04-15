@@ -1,4 +1,5 @@
-import React, { useState } from "react"
+import React, { useState } from "react";
+import trashIcon from "./assets/deleteIcon.png"
 
 function ToDoList() {
 
@@ -20,6 +21,7 @@ function ToDoList() {
                 isChecked: false
             }
             setTasks(t => [...t, newTask])
+            setUserInput("");
         }
     }
 
@@ -52,10 +54,15 @@ function ToDoList() {
     }
 
     function handleTaskCheck(index) {
-        const updated = tasks.map(task =>
-            (task.id - 1) === index ? { ...task, isChecked: !task.isChecked } : task
+        const updated = tasks.map((task,i) =>
+            i === index ? { ...task, isChecked: !task.isChecked } : task
         );
-        setTasks(updated);
+        const rendered = [
+            ...updated.filter(task => !task.isChecked),
+            ...updated.filter(task => task.isChecked)
+        ]
+        
+        setTasks(rendered);
     }
 
     return (
@@ -70,9 +77,10 @@ function ToDoList() {
                                 <input type="checkbox"
                                     checked={task.isChecked}
                                     onChange={() => handleTaskCheck(index)}
+                                    
                                 ></input>
 
-                                <span style={{
+                                <span className="task-text" style={{
                                     color: task.isChecked ? "grey" : "black",
                                     textDecoration: task.isChecked ? "line-through" : "none"
                                 }}>
@@ -80,9 +88,12 @@ function ToDoList() {
                                 </span>
 
                             </div>
-                            <button className="delete-button"
+                            <button className="remove-button"
                                     onClick={() => removeTask(index)}>
-                                    Delete
+                                    <img src={trashIcon} 
+                                    alt="Delete" 
+                                    width="20px"
+                                     height="20px"></img>
                             </button>
 
                             <button className="task-move-up"
