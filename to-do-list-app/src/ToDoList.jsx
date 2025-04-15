@@ -28,12 +28,27 @@ function ToDoList() {
         setTasks(updated);
     }
 
-    function moveTaskUp(id) {
+    function moveTaskUp(index) {
+        const updatedTasks = [...tasks];
+        if(index > 0){
+            [updatedTasks[index],updatedTasks[index - 1]]=
+            [updatedTasks[index - 1],updatedTasks[index]];
+            setTasks(updatedTasks);
+        }
+        
 
     }
 
-    function moveTaskDown(id) {
+    function moveTaskDown(index) {
+        const updatedTasks = [...tasks];
+        if(index < tasks.length - 1){
+            [updatedTasks[index + 1],updatedTasks[index]]=
+            [updatedTasks[index],updatedTasks[index + 1]];
+            setTasks(updatedTasks);
 
+        }else{
+            setTasks(updatedTasks);
+        }
     }
 
     function handleTaskCheck(index) {
@@ -56,15 +71,24 @@ function ToDoList() {
                                     checked={task.isChecked}
                                     onChange={() => handleTaskCheck(index)}
                                 ></input>
+
                                 <span style={{
                                     color: task.isChecked ? "grey" : "black",
                                     textDecoration: task.isChecked ? "line-through" : "none"
                                 }}>
                                     {task.taskName}
                                 </span>
+
                             </div>
                             <button className="delete-button"
-                                onClick={() => removeTask(index)}>Delete</button>
+                                    onClick={() => removeTask(index)}>
+                                    Delete
+                            </button>
+
+                            <button className="task-move-up"
+                                    onClick={() => moveTaskUp(index)}>⬆️</button>
+                            <button className="task-move-down"
+                                    onClick={() => moveTaskDown(index)}>⬇️</button>
 
                         </li>
                     )}

@@ -5,6 +5,33 @@ li{
     margin-bottom: 5px;
 }
 
+body{
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.to-do-list-container{
+    margin-left: 550px;
+}
+
 .task-row{
     width: 120px;
 }
+
+.new-task{
+    height: 25px;
+    width: 220px;
+}
+
+.title{
+    margin-left: 70px;
+}
+
+.task-move-up, .task-move-down{
+    background-color: rgb(2, 165, 235);
+    border: none;
+    border-radius: 2px;
+    
+}
+
+
+
