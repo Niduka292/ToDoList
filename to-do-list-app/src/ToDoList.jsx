@@ -16,11 +16,11 @@ function ToDoList() {
     function addTask() {
         if (userInput.trim() !== "") {
             const newTask = {
-                id: tasks.length + 1,
+                id: Date.now(), // Ensures no duplicate IDs
                 taskName: userInput,
                 isChecked: false
             }
-            
+
             const checked = tasks.filter(task => task.isChecked);
             const unchecked = tasks.filter(task => !task.isChecked);
 
@@ -81,6 +81,7 @@ function ToDoList() {
                             key={index}>
                             <div className="task-row">
                                 <input type="checkbox"
+                                    className="task-checkbox"
                                     checked={task.isChecked}
                                     onChange={() => handleTaskCheck(index)}
                                     
@@ -114,7 +115,7 @@ function ToDoList() {
             <div className="add-new-task">
                 <input className="new-task"
                     value={userInput}
-                    placeholder="e.g. Study"
+                    placeholder="  e.g. Study"
                     onChange={handleInput}
                     type="text"
                     onKeyDown={(e) => {
