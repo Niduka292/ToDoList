@@ -107,6 +107,7 @@ body.dark .new-task::placeholder{
 
 .remove-button:hover{
     filter: brightness(70%);
+    cursor: pointer;
 }
 
 .remove-button img{

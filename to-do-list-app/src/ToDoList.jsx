@@ -117,7 +117,7 @@ function ToDoList() {
 
                                 </div>
                                 <button className="remove-button"
-                                    onClick={() => removeTask(index)}>
+                                    onClick={() => removeTask(task.id)}>
                                     <img src={trashIcon}
                                         alt="Delete"
                                         width="20px"
